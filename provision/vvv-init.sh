@@ -33,7 +33,11 @@ PHP
   echo "Installing project composer dependencies..."
   mkdir /home/vagrant/.composer
   chown -R www-data:www-data /home/vagrant/.composer
+  cd ${VVV_PATH_TO_SITE}/site
   sudo -u www-data /usr/local/bin/composer install
+  cd ${VVV_PATH_TO_SITE}/public_html
+  rm -rf wp-content
+  ln -s ${VVV_PATH_TO_SITE}/site/wp-content ${VVV_PATH_TO_SITE}/public_html/wp-content
   noroot wp plugin activate --all
   echo "Installing the theme..."
   noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
