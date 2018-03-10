@@ -4,7 +4,7 @@ A VVV 2.x based Wordpress project template that includes an optimal structure fo
 
 The boilerplate uses [VVV2](https://varyingvagrantvagrants.org) for local installation. 
 
-Default WP login and password are `admin` and `password`, and the MYSQL credentials are `root`/`root`.
+Default WP login and password are `admin` and `password`, and the MYSQL credentials are `wp`/`wp`.
 
 ### Installing VVV2
 
