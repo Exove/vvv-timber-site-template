@@ -30,6 +30,13 @@ PHP
 
   echo "Installing WordPress Stable..."
   noroot wp core install --url=sitename.test --quiet --title="Site name" --admin_name=admin --admin_email="admin@local.test" --admin_password="password"
+  echo "Installing project composer dependencies..."
+  mkdir /home/vagrant/.composer
+  chown -R www-data:www-data /home/vagrant/.composer
+  sudo -u www-data /usr/local/bin/composer install
+  noroot wp plugin activate --all
+  echo "Installing the theme..."
+  noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
 
 else
 
