@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+# please configure the paths depending on specific server configuration
+# this example is optimal for a staging/production server
+theme_name="timber-theme"
+theme_path="/var/www/git/site/wp-content/themes/$theme_name"
+
+changed_files="$(git diff-tree -r --name-only --no-commit-id HEAD@{1} HEAD)"
+
+run_if_changed() {
+  matches=$(echo "$changed_files" | grep -o "$1" | sort -u | tr '\n' ' ')
+  if [ -n "$matches" ]; then echo " * Changes detected in $matches" && echo " * Running $2" && eval "$2"
+  fi
+}
+
+run_if_changed "composer.json" "(cd /var/www/git/site/ && sudo -u php-fpm /usr/local/bin/composer update)"
+run_if_changed "package.json" "(cd $theme_path && npm prune && npm install)"
+run_if_changed "$theme_name/scss/\|$theme_name/js/\|$theme_name/languages/\|$theme_name/gulpfile.js\|.gitignore" "(cd $theme_path && gulp)"
