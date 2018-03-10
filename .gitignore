@@ -22,22 +22,26 @@
 #   this version ignores all files by default
 # -----------------------------------------------------------------
 
+# ignore some VVV related stuff
+/log
+/public_html
+
 # ignore everything in the root except the "wp-content" directory.
-/*
-!wp-content/
+/site/*
+!/site/wp-content/
 
 # ignore everything in the "wp-content" directory, except:
 # mu-plugins, plugins, and themes directories
-wp-content/*
-!wp-content/mu-plugins/
-!wp-content/plugins/
-!wp-content/themes/
+/site/wp-content/*
+!/site/wp-content/mu-plugins/
+!/site/wp-content/plugins/
+!/site/wp-content/themes/
 
 # ignore all mu-plugins, plugins, and themes
 # unless explicitly whitelisted at the end of this file
-wp-content/mu-plugins/*
-wp-content/plugins/*
-wp-content/themes/*
+/site/wp-content/mu-plugins/*
+/site/wp-content/plugins/*
+/site/wp-content/themes/*
 
 # ignore all files starting with . or ~
 .*
@@ -47,7 +51,7 @@ wp-content/themes/*
 ehthumbs.db
 Thumbs.db
 
-# ignore Editor files
+# ignore editor files
 *.sublime-project
 *.sublime-workspace
 *.komodoproject
