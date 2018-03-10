@@ -1,8 +1,10 @@
-A VVV 2.x based Wordpress project template that includes an optimal structure for fast creation of a new site, `composer.json` with ACF Pro and Timber plugins included, and a Timber based theme.
+A VVV 2.x based Wordpress project template that includes an optimal structure for fast creation of a new site, `composer.json` with ACF Pro and Timber plugins included, and a Timber based theme (default, but optional).
 
 ## Installation
 
-The boilerplate uses [VVV2](https://varyingvagrantvagrants.org) for local installation.
+The boilerplate uses [VVV2](https://varyingvagrantvagrants.org) for local installation. 
+
+Default WP login and password are `admin` and `password`, and the MYSQL credentials are `root`/`root`.
 
 ### Installing VVV2
 
@@ -30,7 +32,7 @@ The boilerplate uses [VVV2](https://varyingvagrantvagrants.org) for local instal
 	1. If you have an ACF Pro license, you can add the key here as the value for `ACF_PRO_KEY` constant to have the plugin automatically installed on `composer install` (in the form of `ACF_PRO_KEY=XXXX`);
 	2. On staging/production you might want to add an `ENV` constant to this file equal to anything except for `dev`;
 8. inside the VM, do `composer install` (see the installation notes 1 and 2);
-9. continue with the theme installation by following the `README.md` in the `site/wp-content/themes/themename` folder.
+9. (optionally) continue with the Timber-based theme installation by following the `README.md` in the `site/wp-content/themes/themename` folder.
 
 ### Installation notes
 
