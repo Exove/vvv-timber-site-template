@@ -47,5 +47,10 @@ else
   echo "Updating WordPress Stable..."
   cd ${VVV_PATH_TO_SITE}/public_html
   noroot wp core update
+  cd ${VVV_PATH_TO_SITE}/site
+  noroot /usr/local/bin/composer install
+  cd ${VVV_PATH_TO_SITE}/public_html
+  noroot wp plugin activate --all
+  noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
 
 fi
