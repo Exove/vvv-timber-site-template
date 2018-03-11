@@ -5,7 +5,9 @@
 CONFIG_ACF_PRO_KEY=`get_config_value 'acf_pro_key'`
 
 # Add environment vars to the VM
-noroot export ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY}
+# noroot export ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY}
+noroot source ~/.profile && [ -z "$ACF_PRO_KEY" ] && echo "export ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY}" >> ~/.profile
+source ~/.profile && [ -z "$ACF_PRO_KEY" ] && echo "export ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY}" >> ~/.profile
 
 # Make a database, if we don't already have one
 echo -e "\nCreating database 'sitename' (if it's not already there)"
