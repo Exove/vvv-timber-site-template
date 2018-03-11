@@ -2,6 +2,14 @@ A VVV 2.x based Wordpress project template that includes an optimal structure fo
 
 The project boilerplate can be used for creation of multiple WP sites within one VVV VM. 
 
+## Why use this boilerplate?
+
+- It makes it easier to start new sites on the same VVV install;
+- it makes `composer.json` plugin installation effortless and includes a couple of plugin dependencies that are useful for common theme development;
+- it structures the project conveniently so that all the stuff related to one project would end up in the same place;
+- all the unrelated files get ignored by default ([you define what is whitelisted](https://salferrarello.com/wordpress-gitignore/)). So no logs or db files checked out accidentally;
+- by default it allows using a boilerplate theme optimised for modern, highly automated, component-enabled, DRY development.
+
 ## Installation
 
 The boilerplate uses [VVV2](https://varyingvagrantvagrants.org) for local installation. 
