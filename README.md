@@ -43,7 +43,7 @@ First you need to install VVV itself. Skip this if you already have VVV 2.x inst
     ```
 
 5. (optionally) create an `.env` file in the `site` dir. Two constants can be added there right away (you can also use the file later for other environment-dependent values):
-	1. If you have an ACF Pro license, you can add the key here as the value for `ACF_PRO_KEY` constant to have the plugin automatically installed on `composer install` (in a form of `ACF_PRO_KEY=XXXX`);
+	1. If you own an ACF Pro license, you need to add the key here as the value for `ACF_PRO_KEY` constant to have the plugin automatically installed on `composer install` (in a form of `ACF_PRO_KEY=XXXX`). If you don't — remove the lines 7-22 and 25 from `site/composer.json`;
 	2. On staging/production you might want to add an `ENV` constant to this file equal to anything except for `dev`;
 6. do `vagrant reload --provision` now (and later if the procedure finishes with some problems — see the installation note 3);
 7. (optionally) continue with the Timber-based theme installation by following the `README.md` in the `site/wp-content/themes/timber-boilerplate` folder.
@@ -62,8 +62,4 @@ First you need to install VVV itself. Skip this if you already have VVV 2.x inst
     sudo -u www-data /usr/local/bin/composer install
     ```
 
-2. to allow cache usage by composer in VM, check if the dir `/home/vagrant/.composer` exists inside the VM and if its owner set to `www-data`:
-
-    ```
-      sudo chown -R www-data:www-data .composer
-    ```
+2. Update the last lines in `.gitignore` file once you've renamed the theme folder and once you have custom plugins that need to be tracked by your repo.
