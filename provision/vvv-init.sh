@@ -30,11 +30,12 @@ PHP
 
   echo "Installing WordPress Stable..."
   noroot wp core install --url=sitename.test --quiet --title="Site name" --admin_name=admin --admin_email="admin@local.test" --admin_password="password"
-  echo "Installing project composer dependencies..."
+  echo "Setting up composer permissions..."
   mkdir /home/vagrant/.composer
   chown -R www-data:www-data /home/vagrant/.composer
   cd ${VVV_PATH_TO_SITE}/site
-  noroot /usr/local/bin/composer install
+  echo "Installing project composer dependencies..."
+  sudo -u www-data /usr/local/bin/composer install
   echo "Symlinking wp-content..."
   cd ${VVV_PATH_TO_SITE}/public_html
   rm -rf wp-content
@@ -51,8 +52,12 @@ else
   echo "Updating WordPress Stable..."
   cd ${VVV_PATH_TO_SITE}/public_html
   noroot wp core update
+  echo "Setting up composer permissions..."
   cd ${VVV_PATH_TO_SITE}/site
-  noroot /usr/local/bin/composer install
+  chown -R www-data:www-data /home/vagrant/.composer
+  echo "Installing project composer dependencies..."
+  sudo -u www-data /usr/local/bin/composer install
+  rm -rf wp-content/themes
   cd ${VVV_PATH_TO_SITE}/public_html
   echo "Activating temporary theme..."
   noroot wp theme install twentyseventeen --activate
