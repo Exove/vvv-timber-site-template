@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 # Provision WordPress Stable
 
+# Configuration
+CONFIG_ACF_PRO_KEY=`get_config_value 'acf_pro_key'`
+
+# Add environment vars to the VM
+export ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY}
+
 # Make a database, if we don't already have one
 echo -e "\nCreating database 'sitename' (if it's not already there)"
 mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS sitename"
