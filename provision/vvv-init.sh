@@ -62,12 +62,15 @@ else
   echo "Installing project composer dependencies..."
   cd ${VVV_PATH_TO_SITE}/site
   noroot sudo -u www-data ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY} /usr/local/bin/composer install
-  echo "Removing themes installed during earlier provision..."
-  rm -rf wp-content/themes
-  echo "Activating plugins..."
-  cd ${VVV_PATH_TO_SITE}/public_html
-  noroot wp plugin activate --all
-  echo "Installing the theme..."
-  noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
-
+  read -r -p "Do you want to remove current themes folder, activate all plugins and install a boilerplate theme? [y/N] " response
+  response=${response,,}    # tolower
+  if [[ "$response" =~ ^(yes|y)$ ]]; then
+    echo "Removing themes installed during earlier provision..."
+    rm -rf wp-content/themes
+    echo "Activating plugins..."
+    cd ${VVV_PATH_TO_SITE}/public_html
+    noroot wp plugin activate --all
+    echo "Installing the theme..."
+    noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
+  fi
 fi
