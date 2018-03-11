@@ -36,6 +36,7 @@ PHP
 
   echo "Installing WordPress Stable..."
   noroot wp core install --url=${DOMAIN} --quiet --title="${SITE_TITLE}" --admin_name=admin --admin_email="admin@local.test" --admin_password="password"
+  sed -i "s#{{DOMAIN}}#${DOMAIN}#" "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf"
   echo "Creating cache folder for composer..."
   mkdir /home/vagrant/.composer
   echo "Setting up composer cache permissions..."
@@ -74,3 +75,4 @@ else
   noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
 
 fi
+
