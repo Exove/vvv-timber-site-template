@@ -6,11 +6,13 @@ The boilerplate uses [VVV2](https://varyingvagrantvagrants.org) for local instal
 
 Default WP login and password are `admin` and `password`, and the MYSQL credentials are `wp`/`wp`.
 
+This boilerplate assumes that you will have your project in a git repo of its own. 
+
 ### Installing VVV2
 
-1. Fork this repo;
-2. Go through `provision/vvv-nginx.conf`, `provision/vvv-init.sh`, replacing `sitename` with your project/local domain name. The local domain will be `<sitename>.test`;
-3. Push the changes and copy the git URL;
+1. Fork this repo or obtain it in some other way;
+2. Go through `provision/vvv-nginx.conf`, `provision/vvv-init.sh`, replacing `sitename` with your project/local domain name. The local domain will be `<sitename>.test` ([see why](https://varyingvagrantvagrants.org/docs/en-US/troubleshooting/dev-tld/) it's `.test`);
+3. Push the changes to a dedicated git repo of your site and copy the git URL;
 1. download [VVV2](http://github.com/Varying-Vagrant-Vagrants/VVV) (follow the instuctions in [their docs](https://varyingvagrantvagrants.org/docs/en-US/installation/));
 7. (optionally) create an `.env` file in the `site` dir. Two constants can be added there right away, and you can also use the file later for other environment-dependent values:
 	1. If you have an ACF Pro license, you can add the key here as the value for `ACF_PRO_KEY` constant to have the plugin automatically installed on `composer install` (in the form of `ACF_PRO_KEY=XXXX`);
