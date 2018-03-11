@@ -30,18 +30,17 @@ PHP
 
   echo "Installing WordPress Stable..."
   noroot wp core install --url=sitename.test --quiet --title="Site name" --admin_name=admin --admin_email="admin@local.test" --admin_password="password"
-  echo "Setting up composer permissions..."
+  echo "Creating cache folder for composer..."
   mkdir /home/vagrant/.composer
+  echo "Setting up composer cache permissions..."
   chown -R www-data:www-data /home/vagrant/.composer
-  cd ${VVV_PATH_TO_SITE}/site
   echo "Installing project composer dependencies..."
+  cd ${VVV_PATH_TO_SITE}/site
   noroot sudo -u www-data /usr/local/bin/composer install
   echo "Symlinking wp-content..."
   cd ${VVV_PATH_TO_SITE}/public_html
   rm -rf wp-content
   ln -s ${VVV_PATH_TO_SITE}/site/wp-content ${VVV_PATH_TO_SITE}/public_html/wp-content
-  echo "Activating temporary theme..."
-  noroot wp theme install twentyseventeen --activate
   echo "Activating plugins..."
   noroot wp plugin activate --all
   echo "Installing the theme..."
@@ -52,16 +51,15 @@ else
   echo "Updating WordPress Stable..."
   cd ${VVV_PATH_TO_SITE}/public_html
   noroot wp core update
-  echo "Setting up composer permissions..."
-  cd ${VVV_PATH_TO_SITE}/site
+  echo "Setting up composer cache permissions..."
   chown -R www-data:www-data /home/vagrant/.composer
   echo "Installing project composer dependencies..."
+  cd ${VVV_PATH_TO_SITE}/site
   noroot sudo -u www-data /usr/local/bin/composer install
+  echo "Removing themes installed during earlier provision..."
   rm -rf wp-content/themes
-  cd ${VVV_PATH_TO_SITE}/public_html
-  echo "Activating temporary theme..."
-  noroot wp theme install twentyseventeen --activate
   echo "Activating plugins..."
+  cd ${VVV_PATH_TO_SITE}/public_html
   noroot wp plugin activate --all
   echo "Installing the theme..."
   noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
