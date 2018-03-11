@@ -38,8 +38,9 @@ PHP
   cd ${VVV_PATH_TO_SITE}/site
   noroot sudo -u www-data /usr/local/bin/composer install
   echo "Symlinking wp-content..."
-  cd ${VVV_PATH_TO_SITE}/public_html
-  rm -rf wp-content
+  # removing the vanilla wp-content folder installed with WP core
+  rm -rf ${VVV_PATH_TO_SITE}/public_html/wp-content
+  # symlinking wp-content from git repo to public_html dir from which VVV serves Wordpress
   ln -s ${VVV_PATH_TO_SITE}/site/wp-content ${VVV_PATH_TO_SITE}/public_html/wp-content
   echo "Activating plugins..."
   noroot wp plugin activate --all
