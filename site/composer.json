@@ -22,7 +22,7 @@
     }
   ],
   "require": {
-    "advanced-custom-fields/advanced-custom-fields-pro": "^5.6",
-    "wpackagist-plugin/timber-library": "^1.6"
+    "wpackagist-plugin/timber-library": "^1.6",
+    "advanced-custom-fields/advanced-custom-fields-pro": "^5.6"
   }
 }
