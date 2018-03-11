@@ -6,6 +6,7 @@ SITE_TITLE=`get_config_value 'site_title' "${VVV_SITE_NAME}"`
 DB_NAME=`get_config_value 'db_name' "${VVV_SITE_NAME}"`
 DOMAIN=`get_primary_host "${VVV_SITE_NAME}".test`
 ACF_PRO_KEY=`get_config_value 'acf_pro_key'`
+INSTALL_BOILERPLATE_THEME=`get_config_value 'install_boilerplate_theme' 'false'`
 
 # Make a database, if we don't already have one
 echo -e "\nCreating database '${DB_NAME}' (if it's not already there)"
@@ -75,6 +76,8 @@ else
   noroot wp plugin activate --all
   echo "Installing the theme..."
   noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
-
+  if [ "$INSTALL_BOILERPLATE_THEME" == "true" ]; then
+    echo "it is true"
+  fi
+  
 fi
-
