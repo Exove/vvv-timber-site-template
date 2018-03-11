@@ -1,6 +1,6 @@
 A VVV 2.x based Wordpress project template that includes an optimal structure for fast creation of a new site, `composer.json` with ACF Pro and Timber plugins included, and a Timber based theme (default, but any other theme can be used as well).
 
-The project boilerplate can be used for creation of multiple WP sites within one VVV VM. 
+The project boilerplate can be used for creation of multiple WP sites (projects) within one VVV VM. This does NOT mean it is targeted at WP multisites creation.
 
 ## Why use this boilerplate?
 
