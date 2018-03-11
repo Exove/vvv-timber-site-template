@@ -35,7 +35,7 @@ PHP
   chown -R www-data:www-data /home/vagrant/.composer
   cd ${VVV_PATH_TO_SITE}/site
   echo "Installing project composer dependencies..."
-  sudo -u www-data /usr/local/bin/composer install
+  noroot sudo -u www-data /usr/local/bin/composer install
   echo "Symlinking wp-content..."
   cd ${VVV_PATH_TO_SITE}/public_html
   rm -rf wp-content
@@ -56,7 +56,7 @@ else
   cd ${VVV_PATH_TO_SITE}/site
   chown -R www-data:www-data /home/vagrant/.composer
   echo "Installing project composer dependencies..."
-  sudo -u www-data /usr/local/bin/composer install
+  noroot sudo -u www-data /usr/local/bin/composer install
   rm -rf wp-content/themes
   cd ${VVV_PATH_TO_SITE}/public_html
   echo "Activating temporary theme..."
