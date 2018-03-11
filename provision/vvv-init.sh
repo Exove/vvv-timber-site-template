@@ -43,6 +43,7 @@ PHP
   # symlinking wp-content from git repo to public_html dir from which VVV serves Wordpress
   ln -s ${VVV_PATH_TO_SITE}/site/wp-content ${VVV_PATH_TO_SITE}/public_html/wp-content
   echo "Activating plugins..."
+  cd ${VVV_PATH_TO_SITE}/public_html
   noroot wp plugin activate --all
   echo "Installing the theme..."
   noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
