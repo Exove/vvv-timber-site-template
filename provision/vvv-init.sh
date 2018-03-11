@@ -35,9 +35,13 @@ PHP
   chown -R www-data:www-data /home/vagrant/.composer
   cd ${VVV_PATH_TO_SITE}/site
   noroot /usr/local/bin/composer install
+  echo "Symlinking wp-content..."
   cd ${VVV_PATH_TO_SITE}/public_html
   rm -rf wp-content
   ln -s ${VVV_PATH_TO_SITE}/site/wp-content ${VVV_PATH_TO_SITE}/public_html/wp-content
+  echo "Activating temporary theme..."
+  noroot wp theme install twentyseventeen --activate
+  echo "Activating plugins..."
   noroot wp plugin activate --all
   echo "Installing the theme..."
   noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
@@ -50,7 +54,11 @@ else
   cd ${VVV_PATH_TO_SITE}/site
   noroot /usr/local/bin/composer install
   cd ${VVV_PATH_TO_SITE}/public_html
+  echo "Activating temporary theme..."
+  noroot wp theme install twentyseventeen --activate
+  echo "Activating plugins..."
   noroot wp plugin activate --all
+  echo "Installing the theme..."
   noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
 
 fi
