@@ -6,7 +6,9 @@ The boilerplate uses [VVV2](https://varyingvagrantvagrants.org) for local instal
 
 Default WP login and password are `admin` and `password`, and the MYSQL credentials are `wp`/`wp`.
 
-This boilerplate assumes that you will have your project in a git repo of its own. 
+### Prerequisites
+
+ - This boilerplate assumes that you will store your project in a git repo of its own.
 
 ### Installing VVV2
 
