@@ -13,6 +13,9 @@ mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS ${DB_NAME}"
 mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO wp@localhost IDENTIFIED BY 'wp';"
 echo -e "\n DB operations done.\n\n"
 
+# Do search/replace in vvv-nginx.conf
+sed -i "s#{{DOMAIN}}#${DOMAIN}#g" "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf"
+
 # Nginx Logs
 mkdir -p ${VVV_PATH_TO_SITE}/log
 touch ${VVV_PATH_TO_SITE}/log/error.log
@@ -36,7 +39,6 @@ PHP
 
   echo "Installing WordPress Stable..."
   noroot wp core install --url=${DOMAIN} --quiet --title="${SITE_TITLE}" --admin_name=admin --admin_email="admin@local.test" --admin_password="password"
-  sed -i "s#{{DOMAIN}}#${DOMAIN}#" "${VVV_PATH_TO_SITE}/provision/vvv-nginx.conf"
   echo "Creating cache folder for composer..."
   mkdir /home/vagrant/.composer
   echo "Setting up composer cache permissions..."
