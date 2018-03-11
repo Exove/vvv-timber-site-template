@@ -52,7 +52,7 @@ First you need to install VVV itself. Skip this if you already have VVV 2.x inst
 
 1. If you want to use your own theme instead of the provided one, comment out the lines beginning from `noroot wp theme install` in `provision/vvv-init.sh`;
 2. you can remove/comment out the default sites from `vvv-config.yml` (`wordpress-develop` and `wordpress-default`) if you wish. You can also later add the sites from other Wordpress projects as well into the same VM by redoing the step 4;
-3. once provision is successful, you might want to comment out (with `#`) the lines 66-68 of `provision/vvv-init.sh` to prevent activation of all the plugins and switching to the boilerplate theme whenever provision is run in future (as you might have your own theme by that moment and some plugins that you don't want to be activated).
+3. once provision is successful, you might want to comment out (with `#`) the lines 65-71 of `provision/vvv-init.sh` to prevent activation of all the plugins and switching to the boilerplate theme whenever provision is run in future (as you might have your own theme by that moment and some plugins that you don't want to be activated).
 
 ### Usage notes
 
