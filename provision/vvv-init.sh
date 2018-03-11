@@ -6,8 +6,8 @@ CONFIG_ACF_PRO_KEY=`get_config_value 'acf_pro_key'`
 
 # Add environment vars to the VM
 # noroot export ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY}
-noroot source ~/.profile && [ -z "$ACF_PRO_KEY" ] && echo "export ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY}" >> ~/.profile
-source ~/.profile && [ -z "$ACF_PRO_KEY" ] && echo "export ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY}" >> ~/.profile
+# noroot source ~/.profile && [ -z "$ACF_PRO_KEY" ] && echo "export ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY}" >> ~/.profile
+# source ~/.profile && [ -z "$ACF_PRO_KEY" ] && echo "export ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY}" >> ~/.profile
 
 # Make a database, if we don't already have one
 echo -e "\nCreating database 'sitename' (if it's not already there)"
@@ -44,7 +44,7 @@ PHP
   chown -R www-data:www-data /home/vagrant/.composer
   echo "Installing project composer dependencies..."
   cd ${VVV_PATH_TO_SITE}/site
-  noroot sudo -u www-data /usr/local/bin/composer install
+  noroot sudo -u www-data ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY} /usr/local/bin/composer install
   echo "Symlinking wp-content..."
   # removing the vanilla wp-content folder installed with WP core
   rm -rf ${VVV_PATH_TO_SITE}/public_html/wp-content
@@ -66,7 +66,7 @@ else
   chown -R www-data:www-data /home/vagrant/.composer
   echo "Installing project composer dependencies..."
   cd ${VVV_PATH_TO_SITE}/site
-  noroot sudo -u www-data /usr/local/bin/composer install
+  noroot sudo -u www-data ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY} /usr/local/bin/composer install
   echo "Removing themes installed during earlier provision..."
   rm -rf wp-content/themes
   echo "Activating plugins..."
