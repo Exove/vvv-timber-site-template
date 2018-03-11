@@ -76,8 +76,9 @@ else
   noroot wp plugin activate --all
   echo "Installing the theme..."
   noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
+  echo ${INSTALL_BOILERPLATE_THEME}
   if [ "$INSTALL_BOILERPLATE_THEME" == "true" ]; then
     echo "it is true"
   fi
-  
+
 fi
