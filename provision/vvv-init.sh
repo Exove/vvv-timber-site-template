@@ -2,12 +2,15 @@
 # Provision WordPress Stable
 
 # Configuration
-CONFIG_ACF_PRO_KEY=`get_config_value 'acf_pro_key'`
+SITE_TITLE=`get_config_value 'site_title' "${VVV_SITE_NAME}"`
+DB_NAME=`get_config_value 'db_name' "${VVV_SITE_NAME}"`
+DOMAIN=`get_primary_host "${VVV_SITE_NAME}".test`
+ACF_PRO_KEY=`get_config_value 'acf_pro_key'`
 
 # Make a database, if we don't already have one
-echo -e "\nCreating database 'sitename' (if it's not already there)"
-mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS sitename"
-mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON sitename.* TO wp@localhost IDENTIFIED BY 'wp';"
+echo -e "\nCreating database '${DB_NAME}' (if it's not already there)"
+mysql -u root --password=root -e "CREATE DATABASE IF NOT EXISTS ${DB_NAME}"
+mysql -u root --password=root -e "GRANT ALL PRIVILEGES ON ${DB_NAME}.* TO wp@localhost IDENTIFIED BY 'wp';"
 echo -e "\n DB operations done.\n\n"
 
 # Nginx Logs
@@ -27,19 +30,19 @@ if [[ ! -d "${VVV_PATH_TO_SITE}/public_html" ]]; then
   cd ${VVV_PATH_TO_SITE}/public_html
 
   echo "Configuring WordPress Stable..."
-  noroot wp core config --dbname=sitename --dbuser=wp --dbpass=wp --quiet --extra-php <<PHP
+  noroot wp core config --dbname=${DB_NAME} --dbuser=wp --dbpass=wp --quiet --extra-php <<PHP
 define( 'WP_DEBUG', true );
 PHP
 
   echo "Installing WordPress Stable..."
-  noroot wp core install --url=sitename.test --quiet --title="Site name" --admin_name=admin --admin_email="admin@local.test" --admin_password="password"
+  noroot wp core install --url=${DOMAIN} --quiet --title="${SITE_TITLE}" --admin_name=admin --admin_email="admin@local.test" --admin_password="password"
   echo "Creating cache folder for composer..."
   mkdir /home/vagrant/.composer
   echo "Setting up composer cache permissions..."
   chown -R www-data:www-data /home/vagrant/.composer
   echo "Installing project composer dependencies..."
   cd ${VVV_PATH_TO_SITE}/site
-  noroot sudo -u www-data ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY} /usr/local/bin/composer install
+  noroot sudo -u www-data ACF_PRO_KEY=${ACF_PRO_KEY} /usr/local/bin/composer install
   echo "Symlinking wp-content..."
   # removing the vanilla wp-content folder installed with WP core
   rm -rf ${VVV_PATH_TO_SITE}/public_html/wp-content
@@ -61,7 +64,7 @@ else
   chown -R www-data:www-data /home/vagrant/.composer
   echo "Installing project composer dependencies..."
   cd ${VVV_PATH_TO_SITE}/site
-  noroot sudo -u www-data ACF_PRO_KEY=${CONFIG_ACF_PRO_KEY} /usr/local/bin/composer install
+  noroot sudo -u www-data ACF_PRO_KEY=${ACF_PRO_KEY} /usr/local/bin/composer install
   echo "Removing themes installed during earlier provision..."
   rm -rf wp-content/themes
   echo "Activating plugins..."
