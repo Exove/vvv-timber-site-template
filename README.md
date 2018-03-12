@@ -8,7 +8,7 @@ The project boilerplate can be used for creation of multiple WP sites (projects)
 - it makes plugin installation effortless with `composer.json` and includes a couple of plugin dependencies that are useful for common theme development;
 - it structures the project conveniently so that all the stuff related to one project would end up in the same place;
 - all the unrelated files get ignored by default ([you define what is whitelisted](https://salferrarello.com/wordpress-gitignore/)). So no logs or db files checked out accidentally;
-- by default it allows using a boilerplate theme optimised for modern, highly automated, component-enabled, DRY development.
+- by default it installs [a boilerplate theme](https://github.com/certainlyakey/timber-boilerplate) optimised for modern, highly automated, component-enabled, DRY development. See more information in the repo of the theme.
 
 ## Installation
 
