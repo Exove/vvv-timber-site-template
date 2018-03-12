@@ -29,30 +29,48 @@ First you need to install VVV itself. Skip this if you already have VVV 2.x inst
 
 ### Adding a new site project using the boilerplate
 
-1. Fork this repo or obtain it in some other manner;
-2. Go through `provision/vvv-nginx.conf`, `provision/vvv-init.sh`, replacing `sitename` with your project/local domain name. The local domain [will be](https://varyingvagrantvagrants.org/docs/en-US/troubleshooting/dev-tld/) `{sitename}.test` (see the installation note 1);
-3. Push the changes to a dedicated git repo of your site and copy the git URL (SSH);
-4. add the site to `vvv-custom.yml` with these lines, replacing placeholders in `{}` accordingly:
+1. Fork this repo or push it to a Git server of your choice. Copy the git URL (SSH);
+2. add the site to `vvv-custom.yml` with these lines, replacing placeholders in `{}` accordingly:
 
     ```
-    {sitename}: 
+    {your_project_name}: 
       repo: {git URL to YOUR repo}
       hosts:
-        - {sitename}.test 
+        - {your_domain}.test 
       local_dir: {absolute path on your computer where the site folder will be. Can be outside of VVV2 folder}
+      site_title: {Site title (optional, {your_project_name} by default)}
+      db_name: {local DB name (optional, {your_project_name} by default)}
+      acf_pro_key: {insert your ACF Pro key here (optional)}
+      install_boilerplate_theme: true
     ```
+	
+	For example, this is a valid config:
 
-5. (optionally) create an `.env` file in the `site` dir. Two constants can be added there right away (you can also use the file later for other environment-dependent values):
-	1. If you own an ACF Pro license, you need to add the key here as the value for `ACF_PRO_KEY` constant to have the plugin automatically installed on `composer install` (in a form of `ACF_PRO_KEY=XXXX`). If you don't — remove the lines 7-22 and 25 from `site/composer.json`;
+	```
+	acme:
+	  repo: git@github.com:githubuser/my-wp-site.git
+	  hosts:
+	    - acme-domain.test
+	  local_dir: /Users/user/Sites/acme_site
+	  custom:
+	    site_title: My new WP project
+	    db_name: acme_db
+	    acf_pro_key: XXXX
+	    install_boilerplate_theme: true
+	```
+
+3. do `vagrant reload --provision` now (and later if the procedure finishes with some problems);
+4. (optionally) create an `.env` file in the `site` dir. Two constants can be added there right away (you can also use the file later for other environment-dependent values):
+	1. If you own an ACF Pro license, you need to add the key here as the value for `ACF_PRO_KEY` constant to have the plugin automatically installed on `composer install` when not provisioning (in a form of `ACF_PRO_KEY=XXXX`). Note that this is in addition to the `acf_pro_key` key in `vvv-custom.yml`. If you don't own a Pro license — remove the lines 7-22 and 25 from `site/composer.json`;
 	2. On staging/production you might want to add an `ENV` constant to this file equal to anything except for `dev`;
-6. do `vagrant reload --provision` now (and later if the procedure finishes with some problems — see the installation note 3);
-7. (optionally) continue with the Timber-based theme installation by following the `README.md` in the `site/wp-content/themes/timber-boilerplate` folder.
+5. rename the theme folder to your name and update the last line in the root `.gitignore` file accordingly;
+6. once provision is successful, remove `install_boilerplate_theme` key from the project config in `vvv-custom.yml` or set it to `false`. Otherwise you'll have all your themes removed and the boilerplate theme installed again;
+6. (optionally) continue with the Timber-based theme installation by following the `README.md` in the `site/wp-content/themes/{your_theme}` folder.
 
 ### Installation notes
 
-1. If you want to use your own theme instead of the provided one, comment out the lines beginning from `noroot wp theme install` in `provision/vvv-init.sh`;
-2. you can remove/comment out the default sites from `vvv-config.yml` (`wordpress-develop` and `wordpress-default`) if you wish. You can also later add the sites from other Wordpress projects as well into the same VM by redoing the step 4;
-3. once provision is successful, you might want to comment out (with `#`) the lines 65-71 of `provision/vvv-init.sh` to prevent activation of all the plugins and switching to the boilerplate theme whenever provision is run in future (as you might have your own theme by that moment and some plugins that you don't want to be activated).
+1. If you want to use your own boilerplate theme instead of the provided one right prior to VVV project creation, comment out the lines that start from `noroot wp theme install` in `provision/vvv-init.sh`;
+2. you can remove/comment out the default sites from `vvv-config.yml` (`wordpress-develop` and `wordpress-default`) if you wish. You can also later add the sites from other Wordpress projects as well into the same VM by redoing the step 2.
 
 ### Usage notes
 
@@ -62,4 +80,4 @@ First you need to install VVV itself. Skip this if you already have VVV 2.x inst
     sudo -u www-data /usr/local/bin/composer install
     ```
 
-2. Update the last lines in `.gitignore` file once you've renamed the theme folder and once you have custom plugins that need to be tracked by your repo.
+2. Update the last lines in the root `.gitignore` file once you have custom plugins that need to be tracked by your repo. 
