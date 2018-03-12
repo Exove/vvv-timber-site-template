@@ -1,11 +1,11 @@
-A VVV 2.x based Wordpress project template that includes an optimal structure for fast creation of a new site, `composer.json` with ACF Pro and Timber plugins included, and a Timber based theme (default, but any other theme can be used as well).
+A VVV 2.x based Wordpress project template that includes an optimal structure for fast creation of a new site, `composer.json`-enabled plugin workflow with ACF Pro and Timber plugins included, and a Timber based theme (default, but any other theme can be used as well).
 
 The project boilerplate can be used for creation of multiple WP sites (projects) within one VVV VM. This does NOT mean it is targeted at WP multisites creation.
 
 ## Why use this boilerplate?
 
 - It makes it easier to start new sites on the same VVV install;
-- it makes `composer.json` plugin installation effortless and includes a couple of plugin dependencies that are useful for common theme development;
+- it makes plugin installation effortless with `composer.json` and includes a couple of plugin dependencies that are useful for common theme development;
 - it structures the project conveniently so that all the stuff related to one project would end up in the same place;
 - all the unrelated files get ignored by default ([you define what is whitelisted](https://salferrarello.com/wordpress-gitignore/)). So no logs or db files checked out accidentally;
 - by default it allows using a boilerplate theme optimised for modern, highly automated, component-enabled, DRY development.
@@ -18,7 +18,9 @@ Default WP login and password are `admin` and `password`, and the MYSQL credenti
 
 ### Prerequisites
 
- - This boilerplate assumes that you will store your project in a git repo of its own. (It's perfectly possible to use non-git existing codebase with VVV 2.x, but then maybe you don't need this boilerplate.)
+ - This boilerplate assumes that you will store your project in a git repo of its own (it's perfectly possible to use non-git existing codebase with VVV 2.x, but maybe you don't need this boilerplate then);
+ - it is advisable to use a `.test` local domain. [See why](https://varyingvagrantvagrants.org/docs/en-US/troubleshooting/dev-tld/);
+ - it is a good idea to have your site folder located separately from the main VVV directory (with the `local_dir` key of project config in `vvv-custom.yml`).
 
 ### Installing VVV2
 
@@ -30,7 +32,7 @@ First you need to install VVV itself. Skip this if you already have VVV 2.x inst
 ### Adding a new site project using the boilerplate
 
 1. Fork this repo or push it to a Git server of your choice. Copy the git URL (SSH);
-2. add the site to `vvv-custom.yml` with these lines, replacing placeholders in `{}` accordingly:
+2. add the site to `vvv-custom.yml`, replacing placeholders in `{}` accordingly:
 
     ```
     {your_project_name}: 
@@ -38,10 +40,11 @@ First you need to install VVV itself. Skip this if you already have VVV 2.x inst
       hosts:
         - {your_domain}.test 
       local_dir: {absolute path on your computer where the site folder will be. Can be outside of VVV2 folder}
-      site_title: {Site title (optional, {your_project_name} by default)}
-      db_name: {local DB name (optional, {your_project_name} by default)}
-      acf_pro_key: {insert your ACF Pro key here (optional)}
-      install_boilerplate_theme: true
+      custom:
+	      site_title: {Site title (optional, {your_project_name} by default)}
+	      db_name: {local DB name (optional, {your_project_name} by default)}
+	      acf_pro_key: {insert your ACF Pro key here (optional)}
+	      install_boilerplate_theme: true
     ```
 	
 	For example, this is a valid config:
