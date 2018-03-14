@@ -1,8 +1,8 @@
-A VVV 2.x based Wordpress project template that includes an optimal structure for fast creation of a new site, `composer.json`-enabled plugin workflow with ACF Pro and Timber plugins included, and a Timber based theme (default, but any other theme can be used as well).
+A [VVV](https://github.com/Varying-Vagrant-Vagrants/VVV) 2.x site template for Wordpress development. It includes an optimal structure for fast creation of a new site, `composer.json`-enabled plugin workflow with ACF Pro and Timber plugins included, and a Timber based theme (default, but any other theme can be used as well).
 
-The project boilerplate can be used for creation of multiple WP sites (projects) within one VVV VM. This does NOT mean it is targeted at WP multisites creation.
+The site template can be used for creation of multiple WP sites (projects) within one VVV VM. It is currently not optimised for [WP multisite](https://codex.wordpress.org/Create_A_Network) development.
 
-## Why use this boilerplate?
+## Why use this site template?
 
 - It makes it easier to start new sites on the same VVV install;
 - it makes plugin installation effortless with `composer.json` and includes a couple of plugin dependencies that are useful for common theme development;
@@ -12,13 +12,13 @@ The project boilerplate can be used for creation of multiple WP sites (projects)
 
 ## Installation
 
-The boilerplate uses [VVV2](https://varyingvagrantvagrants.org) for local installation. 
+The site template uses [VVV2](https://varyingvagrantvagrants.org) for local installation. 
 
 Default WP login and password are `admin` and `password`, and the MYSQL credentials are `wp`/`wp`.
 
 ### Prerequisites
 
- - This boilerplate assumes that you will store your project in a git repo of its own (it's perfectly possible to use non-git existing codebase with VVV 2.x, but maybe you don't need this boilerplate then);
+ - This site template assumes that you will store your project in a git repo of its own (it's perfectly possible to use non-git existing codebase with VVV 2.x, but maybe you don't need this template then);
  - it is advisable to use a `.test` local domain. [See why](https://varyingvagrantvagrants.org/docs/en-US/troubleshooting/dev-tld/);
  - it is a good idea to have your site folder located separately from the main VVV directory (with the `local_dir` key of project config in `vvv-custom.yml`).
 
@@ -29,7 +29,7 @@ First you need to install VVV itself. Skip this if you already have VVV 2.x inst
 1. clone or download [VVV2](http://github.com/Varying-Vagrant-Vagrants/VVV) (follow the instuctions in [their docs](https://varyingvagrantvagrants.org/docs/en-US/installation/));
 2. create a copy of `vvv-config.yml` in the VVV2 directory naming it `vvv-custom.yml` (see the installation note 2).
 
-### Adding a new site project using the boilerplate
+### Adding a new site using the template
 
 1. Fork this repo or push it to a Git server of your choice. Copy the git URL (SSH);
 2. add the site to `vvv-custom.yml`, replacing placeholders in `{}` accordingly:
@@ -72,7 +72,7 @@ First you need to install VVV itself. Skip this if you already have VVV 2.x inst
 
 ### Installation notes
 
-1. If you want to use your own boilerplate theme instead of the provided one right prior to VVV project creation, comment out the lines that start from `noroot wp theme install` in `provision/vvv-init.sh`;
+1. If you want to use your own theme instead of the provided one right prior to VVV project creation, comment out the lines that start from `noroot wp theme install` in `provision/vvv-init.sh`;
 2. you can remove/comment out the default sites from `vvv-config.yml` (`wordpress-develop` and `wordpress-default`) if you wish. You can also later add the sites from other Wordpress projects as well into the same VM by redoing the step 2.
 
 ### Usage notes
