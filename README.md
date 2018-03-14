@@ -5,10 +5,10 @@ The site template can be used for creation of multiple WP sites (projects) withi
 ## Why use this site template?
 
 - It makes it easier to start new sites on the same VVV install;
-- it makes plugin installation effortless with `composer.json` and includes a couple of plugin dependencies that are useful for common theme development;
+- it makes plugin installation effortless with `composer.json` and includes a couple of plugin dependencies that are useful for theme development;
 - it structures the project conveniently so that all the stuff related to one project would end up in the same place;
 - all the unrelated files get ignored by default ([you define what is whitelisted](https://salferrarello.com/wordpress-gitignore/)). So no logs or db files checked out accidentally;
-- by default it installs [a boilerplate theme](https://github.com/certainlyakey/timber-boilerplate) optimised for modern, highly automated, component-enabled, DRY development. See more information in the repo of the theme.
+- by default it installs [a boilerplate theme](https://github.com/certainlyakey/timber-boilerplate) optimised for modern, highly automated, component-enabled, DRY development driven by Twig templates. See more information in the repo of the theme.
 
 ## Installation
 
@@ -20,7 +20,7 @@ Default WP login and password are `admin` and `password`, and the MYSQL credenti
 
  - This site template assumes that you will store your project in a git repo of its own (it's perfectly possible to use non-git existing codebase with VVV 2.x, but maybe you don't need this template then);
  - it is advisable to use a `.test` local domain. [See why](https://varyingvagrantvagrants.org/docs/en-US/troubleshooting/dev-tld/);
- - it is a good idea to have your site folder located separately from the main VVV directory (with the `local_dir` key of project config in `vvv-custom.yml`).
+ - though not mandatory, it is a good idea to have your site folder located separately from the main VVV directory (with the `local_dir` key of project config in `vvv-custom.yml`).
 
 ### Installing VVV2
 
@@ -62,13 +62,15 @@ First you need to install VVV itself. Skip this if you already have VVV 2.x inst
 	    install_boilerplate_theme: true
 	```
 
+	Remove the `acf_pro_key` key in case you don't have an ACF Pro license. The only mandatory key (other than the project name) is `repo`, but we recommend to have all of them for clarity.
+
 3. do `vagrant reload --provision` now (and later if the procedure finishes with some problems);
 4. (optionally) create an `.env` file in the `site` dir. Two constants can be added there right away (you can also use the file later for other environment-dependent values):
 	1. If you own an ACF Pro license, you need to add the key here as the value for `ACF_PRO_KEY` constant to have the plugin automatically installed on `composer install` when not provisioning (in a form of `ACF_PRO_KEY=XXXX`). Note that this is in addition to the `acf_pro_key` key in `vvv-custom.yml`. If you don't own a Pro license — remove the lines 7-22 and 25 from `site/composer.json`;
 	2. On staging/production you might want to add an `ENV` constant to this file equal to anything except for `dev`;
 5. rename the theme folder to your name and update the last line in the root `.gitignore` file accordingly;
-6. once provision is successful, remove `install_boilerplate_theme` key from the project config in `vvv-custom.yml` or set it to `false`. Otherwise you'll have all your themes removed and the boilerplate theme installed again;
-6. (optionally) continue with the Timber-based theme installation by following the `README.md` in the `site/wp-content/themes/{your_theme}` folder.
+6. only once the provision is successful, remove `install_boilerplate_theme` key from the project config in `vvv-custom.yml` or set it to `false`. Otherwise you'll have all your themes removed and the boilerplate theme installed again;
+6. (optionally) continue with the theme installation by following the [`README.md`](https://github.com/certainlyakey/timber-boilerplate/) in the `site/wp-content/themes/{your_theme}` folder.
 
 ### Installation notes
 
