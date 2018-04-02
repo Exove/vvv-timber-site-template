@@ -6,8 +6,8 @@ The site template can be used for creation of multiple WP sites (projects) withi
 
 - It makes it easier to start new sites on the same VVV install;
 - it makes plugin installation effortless with `composer.json` and includes a couple of plugin dependencies that are useful for theme development;
-- it structures the project conveniently so that all the stuff related to one project would end up in the same place;
-- all the unrelated files get ignored by default ([you define what is whitelisted](https://salferrarello.com/wordpress-gitignore/)). So no logs or db files checked out accidentally;
+- it structures the project conveniently so that all the stuff related to one project ends up in the same place. It helps to separate stuff from multiple projects running in the same VM;
+- all the unrelated files get ignored by default in the included `.gitignore` ([you define what is whitelisted](https://salferrarello.com/wordpress-gitignore/)). So no logs or db files checked out accidentally;
 - by default it installs [a boilerplate theme](https://github.com/certainlyakey/timber-boilerplate) optimised for modern, highly automated, component-enabled, DRY development driven by Twig templates. See more information in the repo of the theme.
 
 ## Installation
