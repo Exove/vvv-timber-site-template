@@ -8,7 +8,7 @@ The site template can be used for creation of multiple WP sites (projects) withi
 - it makes plugin installation effortless with `composer.json` and includes a couple of plugin dependencies that are useful for theme development;
 - it structures the project conveniently so that all the stuff related to one project ends up in the same place. It helps to separate stuff from multiple projects running in the same VM;
 - all the unrelated files get ignored by default in the included `.gitignore` ([you define what is whitelisted](https://salferrarello.com/wordpress-gitignore/)). So no logs or db files checked out accidentally;
-- by default it installs [a boilerplate theme](https://github.com/certainlyakey/timber-boilerplate) optimised for modern, highly automated, component-enabled, DRY development driven by Twig templates. See more information in the repo of the theme.
+- by default it installs [a boilerplate theme](https://github.com/Exove/timber-boilerplate) optimised for modern, highly automated, component-enabled, DRY development driven by Twig templates. See more information in the repo of the theme.
 
 ## Installation
 
@@ -70,7 +70,7 @@ First you need to install VVV itself. Skip this if you already have VVV 2.x inst
 	2. On staging/production you might want to add an `ENV` constant to this file equal to anything except for `dev`;
 5. rename the theme folder to your name and update the last line in the root `.gitignore` file accordingly;
 6. only once the provision is successful, remove `install_boilerplate_theme` key from the project config in `vvv-custom.yml` or set it to `false`. Otherwise you'll have all your themes removed and the boilerplate theme installed again;
-6. (optionally) continue with the theme installation by following the [`README.md`](https://github.com/certainlyakey/timber-boilerplate/) in the `site/wp-content/themes/{your_theme}` folder.
+6. (optionally) continue with the theme installation by following the [`README.md`](https://github.com/Exove/timber-boilerplate/) in the `site/wp-content/themes/{your_theme}` folder.
 
 ### Installation notes
 

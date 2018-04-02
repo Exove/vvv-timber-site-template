@@ -57,7 +57,7 @@ PHP
   noroot wp plugin activate --all
   # installing plugins first, theme second to avoid plugin-related errors on activation
   echo "Installing the theme..."
-  noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
+  noroot wp theme install https://github.com/Exove/timber-boilerplate/archive/master.zip --activate
 
 else
 
@@ -76,7 +76,7 @@ else
     cd ${VVV_PATH_TO_SITE}/public_html
     noroot wp plugin activate --all
     echo "Installing the theme..."
-    noroot wp theme install https://github.com/certainlyakey/timber-boilerplate/archive/master.zip --activate
+    noroot wp theme install https://github.com/Exove/timber-boilerplate/archive/master.zip --activate
   fi
 
 fi
